@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemp library</title>
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/library.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="./images/logodark.png" class="logo logo-light" alt="Logo Light">
+                <img src="./images/logolight.png" class="logo logo-dark" alt="Logo Dark">
+                <h1 class="site-title">Hemp Healthy Eating Calculator</h1>
+            </div>
+            <button class="menu-icon">MENU</button>
+        </nav>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="side-nav">
+        <button class="close-menu">×</button>
+        <ul>
+            <li><a href="index.html">Calculator</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="library.html" class="active">Library</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Use</a>
+        </div>
+    </nav>
+
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- Основной контент -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h2>Books & Studies</h2>
+                    <p>Scientific literature about hemp nutrition</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="info-section">
+            <div class="info-container">
+              <div class="info-text">
+                Hemp is one of humanity's oldest cultivated plants, with a history spanning thousands of years. Its unique properties and versatility make it an invaluable resource in today's world. From producing eco-friendly materials to creating nutritious food products, hemp offers sustainable solutions to many modern challenges. Our library contains a comprehensive collection of materials, research papers, and publications dedicated to this remarkable plant and its potential applications across various fields. Explore our resources to deepen your understanding of hemp's nutritional benefits, cultivation methods, and its role in sustainable development.
+              </div>
+            </div>
+          </div>
+
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-inner">
+                    <input type="text" id="book-search" placeholder="Search books...">
+                </div>
+            </div>
+        </section>
+
+        <section class="books-grid">
+            <div class="book-card">
+                <div class="book-overlay">
+                    <h3>Hemp Nutrition</h3>
+                    <p>By Yurii Kolesnyk</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно -->
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">×</button>
+            <div class="book-details">
+                <div class="book-info">
+                    <h2>Hemp Nutrition: Mathematics of Health</h2>
+                    <div class="book-meta">
+                        <span>By Yurii Kolesnyk</span>
+                        <span>Published: 2024</span>
+                        <span>138 pages</span>
+                        <span>English</span>
+                        <span>Illustrations: 9</span>
+                    </div>
+                    <div class="book-description">
+                        This unique publication reveals a comprehensive approach to understanding hemp's nutritional value and its diverse applications in modern health practices. Based on scientific research and mathematical models, the book provides an in-depth analysis of hemp's components, including proteins, fatty acids, cannabinoids, terpenes, and flavonoids. The author systematically explores hemp's role in addressing global health challenges, its environmental benefits, and its potential in sustainable agriculture. From ancient medicinal practices to cutting-edge scientific discoveries, the book covers everything from basic nutritional properties to advanced therapeutic applications. Special attention is given to hemp's unique protein composition, essential fatty acid ratios, and their significance in human health. The work also includes practical insights into hemp's use in medicine, agriculture, and eco-friendly industrial applications.
+                    </div>
+                    <a href="https://www.amazon.com/dp/B0DK514LQF" class="amazon-button" target="_blank">View on Amazon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-divider"></div>
+        <div class="footer-content">
+            <!-- Support Block -->
+            <div class="support-block">
+                <h3>Support Hemp Research</h3>
+                <p>By supporting this project, you contribute to Ukrainian scientists' research in industrial hemp applications. Your support helps advance scientific knowledge and opens new possibilities for hemp utilization worldwide, promoting sustainable agriculture and health-conscious solutions.</p>
+                <!-- PayPal button -->
+                <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                    <input type="hidden" name="business" value="hempia.com@gmail.com" />
+                    <input type="hidden" name="currency_code" value="USD" />
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                </form>
+            </div>
+    
+            <!-- Contact Block -->
+            <div class="contact-block">
+                <h3>Contact Us</h3>
+                <!-- Замените HTML код формы на этот (используя сервис Formspree): -->
+    <form class="contact-form" action="https://formspree.io/f/mldegykv" method="POST">
+        <div class="form-field">
+            <input type="email" name="email" placeholder="Your email" required>
+        </div>
+        <div class="form-field">
+            <textarea name="message" placeholder="Your message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+            </div>
+        </div>
+    
+        <div class="footer-copyright">
+            <p>© 2024 Hemp Healthy Eating Calculator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Loader and Error Message -->
+    <div class="loader" aria-hidden="true">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="error-message" aria-live="polite"></div>
+
+    <div id="recipe-modal" class="modal recipe-modal"></div>
+
+    <script type="module" src="./js/constants.js"></script>
+    <script type="module" src="./js/utils.js"></script>
+    <script type="module" src="./js/ui.js"></script>
+    <script type="module" src="./js/calculator.js"></script>
+    <script type="module" src="./js/recipes.js"></script>
+    <script type="module" src="./js/library.js"></script>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

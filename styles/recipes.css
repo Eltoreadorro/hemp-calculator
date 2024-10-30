@@ -1,0 +1,799 @@
+/* ----------------- 1. ОСНОВНЫЕ НАСТРОЙКИ И КОНТЕЙНЕРЫ ----------------- */
+body:has(.recipes-page) .menu-icon {
+  margin-right: -120px;
+  margin-bottom: 13px;
+}
+
+body:has(.recipes-page) .logo {
+  margin-left: -120px;
+}
+
+.recipes-page {
+  padding-top: var(--spacing-xl);
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+/* ----------------- 2. HERO СЕКЦИЯ ----------------- */
+/* Обновляем стили для hero секции */
+.hero-section {
+  position: relative;
+  height: 400px; /* Увеличиваем высоту */
+  width: 100%;
+  margin-bottom: 6rem;
+  overflow: hidden; /* Добавляем это свойство */
+  border-radius: 12px; /* Добавляем скругление углов */
+}
+
+.hero-section .hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Меняем на fill вместо cover */
+  display: block; /* Добавляем это свойство */
+}
+
+/* Обновляем стили для оверлея */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.8) 10%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  color: var(--text-color);
+}
+
+.hero-overlay h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ----------------- 3. ПОИСК ----------------- */
+.search-section {
+  max-width: 896px;
+  margin: 0 auto var(--spacing-lg);
+  margin-left: 95px;
+  padding: 0 var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.search-container {
+  width: 100%;
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.8) 0%,
+      rgba(142, 198, 126, 0.3) 100%
+  );
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.search-container input {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--input-padding);
+  background-color: rgba(190, 239, 158, 0.1);
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-size: var(--font-size-lg);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input::placeholder {
+  color: rgba(190, 239, 158, 0.5);
+}
+
+.search-container input:focus {
+  outline: none;
+  background-color: rgba(190, 239, 158, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-results {
+  width: 100%;
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.8) 0%,
+      rgba(142, 198, 126, 0.3) 100%
+  );
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn var(--transition-normal);
+}
+
+.search-results.hidden {
+  display: none;
+}
+
+/* ----------------- 4. КАРТОЧКИ РЕЦЕПТОВ ----------------- */
+.recipe-card {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.8) 0%,
+      rgba(190, 239, 158, 0.2) 100%
+  );
+}
+
+.recipe-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.8)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background: linear-gradient(
+      to top,
+      rgba(28, 73, 27, 0.95) 0%,
+      rgba(142, 198, 126, 0.3) 100%
+  );
+  transform: translateY(0); /* Изначально показываем название */
+  transition: var(--transition-normal);
+  z-index: 2;
+}
+
+.recipe-card-content h3 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: var(--font-size-lg);
+  transition: margin var(--transition-normal);
+}
+
+.recipe-card-content p {
+  color: var(--text-color);
+  margin: var(--spacing-xs) 0 0;
+  font-size: var(--font-size-sm);
+  opacity: 0;
+  max-height: 0;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+/* Ховер эффекты для карточек */
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.recipe-card:hover::before {
+  opacity: 1;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.05);
+}
+
+.recipe-card:hover .recipe-card-content {
+  background: linear-gradient(
+      to top,
+      rgba(28, 73, 27, 0.95) 0%,
+      rgba(15, 45, 7, 0.4) 100%
+  );
+}
+
+.recipe-card:hover .recipe-card-content p {
+  opacity: 1;
+  max-height: 100px;
+}
+
+/* ----------------- 5. СЕТКА КАТЕГОРИЙ ----------------- */
+.categories-grid {
+  max-width: 896px;
+  margin: var(--spacing-lg) auto 0;
+  padding: 0 var(--spacing-xl);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  perspective: 1000px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.category-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  height: 250px;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-slow);
+  animation: categoryAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.8) 0%,
+      rgba(190, 239, 158, 0.2) 100%
+  );
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.category-content {
+  position: absolute;
+  inset: 0;
+  padding: var(--spacing-lg);
+  background: linear-gradient(
+      to bottom,
+      rgba(28, 73, 27, 0.3) 0%,
+      rgba(142, 198, 126, 0.2) 50%,
+      rgba(28, 73, 27, 0.9) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--text-color);
+  transition: all var(--transition-normal);
+  transform: translateZ(20px);
+  backdrop-filter: blur(0px);
+}
+
+.category-content h3 {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  margin-bottom: var(--spacing-xs);
+  transform: translateY(0);
+  transition: transform var(--transition-normal);
+}
+
+.category-content p {
+  font-size: var(--font-size-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  color: var(--text-color);
+  line-height: var(--line-height-normal);
+}
+
+.category-count {
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+}
+
+/* Ховер эффекты для категорий */
+.category-card:hover {
+  transform: translateY(-5px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+.category-card:hover .category-content {
+  background: linear-gradient(
+      to bottom,
+      rgba(28, 73, 27, 0.5) 0%,
+      rgba(142, 198, 126, 0.3) 50%,
+      rgba(28, 73, 27, 0.95) 100%
+  );
+  backdrop-filter: blur(3px);
+}
+
+.category-card:hover .category-content h3 {
+  transform: translateY(-10px);
+}
+
+.category-card:hover .category-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------- 6. МОДАЛЬНЫЕ ОКНА ----------------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-index-modal);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  max-height: 85vh;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.8) 0%,
+      rgba(142, 198, 126, 0.3) 100%
+  );
+  transform: translate(-50%, -50%);
+}
+
+/* Категории в модальном окне */
+.category-modal .modal-content {
+  right: var(--spacing-lg);
+  left: auto;
+  transform: translate(100%, -50%);
+}
+
+.category-modal.active .modal-content {
+  transform: translate(0, -50%);
+}
+
+.category-modal {
+  z-index: var(--z-index-modal);
+}
+
+/* Убираем padding-bottom из модального окна рецепта */
+.recipe-modal .modal-content {
+  left: var(--spacing-lg);
+  right: auto;
+  transform: translateX(-100%);
+  transition: transform var(--transition-normal);
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.9) 0%,
+      rgba(142, 198, 126, 0.25) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  overflow-y: auto; /* Добавляем прокрутку */
+}
+
+.recipe-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: min-content;
+}
+
+.recipe-modal.active .modal-content {
+  transform: translate(0, -50%);
+}
+
+.recipe-modal {
+  z-index: calc(var(--z-index-modal) + 10);
+}
+
+.recipe-modal.active {
+  pointer-events: auto;
+}
+
+/* Заголовок модального окна */
+.modal-header {
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
+  border-bottom: 1px solid rgba(190, 239, 158, 0.2);
+  position: relative;
+}
+
+.modal-header h2 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: var(--font-size-2xl);
+}
+
+/* Сетка рецептов в категории */
+.category-recipes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+  max-height: calc(85vh - 80px);
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.4) 0%,
+      rgba(142, 198, 126, 0.15) 100%
+  );
+  
+}
+
+.category-recipes::after {
+  content: '';
+  grid-column: 1 / -1;
+  height: 50px; /* Фиксированная высота отступа */
+}
+
+/* Изображение рецепта */
+.recipe-image {
+  width: 100%;
+  height: 300px; /* Возвращаем фиксированную высоту */
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+  display: flex; /* Добавляем для центрирования */
+  align-items: center; /* Центрируем по вертикали */
+  justify-content: center; /* Центрируем по горизонтали */
+  background: rgba(0, 0, 0, 0.1); /* Фон для пустых областей */
+}
+
+.recipe-image img {
+  height: 100%;
+  width: auto; /* Авто-ширина для сохранения пропорций */
+  max-width: 100%; /* Ограничиваем максимальную ширину */
+  object-fit: contain; /* Сохраняем пропорции без обрезки */
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.recipe-details {
+  flex: 1;
+  padding: var(--spacing-xl);
+  background: linear-gradient(
+      135deg,
+      rgba(28, 73, 27, 0.4) 0%,
+      rgba(142, 198, 126, 0.15) 100%
+  );
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.recipe-meta,
+.nutrition-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  background: rgba(0, 0, 0, 0.2);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+}
+
+/* Текстовые стили в рецепте */
+.recipe-meta p,
+.nutrition-info p,
+.storage p {
+  color: var(--text-color);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.ingredients h3,
+.instructions h3,
+.tips h3,
+.storage h3,
+.variations h3 {
+  color: var(--text-color);
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.ingredients ul,
+.instructions ol,
+.tips ul,
+.variations ul {
+  color: var(--text-color);
+  padding-left: var(--spacing-lg);
+  margin: 0 0 var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+}
+
+.ingredients li,
+.instructions li,
+.tips li,
+.variations li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Кнопки управления */
+.close-modal,
+.back-button {
+    position: absolute;
+    top: var(--spacing-lg);
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    z-index: 10;
+}
+
+.close-modal {
+    right: var(--spacing-lg);
+}
+
+.back-button {
+    left: var(--spacing-lg);
+}
+
+.close-modal:hover,
+.back-button:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* ----------------- 7. АНИМАЦИИ ----------------- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes categoryAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки для анимации категорий */
+.category-card:nth-child(1) { animation-delay: 0.1s; }
+.category-card:nth-child(2) { animation-delay: 0.2s; }
+.category-card:nth-child(3) { animation-delay: 0.3s; }
+.category-card:nth-child(4) { animation-delay: 0.4s; }
+.category-card:nth-child(5) { animation-delay: 0.5s; }
+.category-card:nth-child(6) { animation-delay: 0.6s; }
+.category-card:nth-child(7) { animation-delay: 0.7s; }
+.category-card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Анимации для контента рецепта */
+.recipe-details > * {
+    animation: slideUp 0.4s ease forwards;
+}
+
+.recipe-details h2 { animation-delay: 0.3s; }
+.recipe-meta { animation-delay: 0.4s; }
+.nutrition-info { animation-delay: 0.5s; }
+.ingredients { animation-delay: 0.6s; }
+.instructions { animation-delay: 0.7s; }
+
+/* ----------------- 8. СТИЛИ СКРОЛЛБАРА ----------------- */
+.recipe-details::-webkit-scrollbar,
+.category-recipes::-webkit-scrollbar {
+    width: 8px;
+}
+
+.recipe-details::-webkit-scrollbar-track,
+.category-recipes::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.recipe-details::-webkit-scrollbar-thumb,
+.category-recipes::-webkit-scrollbar-thumb {
+    background: rgba(142, 198, 126, 0.3);
+    border-radius: 4px;
+}
+
+.recipe-details::-webkit-scrollbar-thumb:hover,
+.category-recipes::-webkit-scrollbar-thumb:hover {
+    background: rgba(142, 198, 126, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(142, 198, 126, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------- 9. МЕДИА ЗАПРОСЫ ----------------- */
+@media (max-width: 1200px) {
+    .modal-content {
+        width: 80%;
+    }
+    
+    .search-results {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .search-results,
+    .category-recipes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categories-grid {
+        gap: var(--spacing-md);
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        top: 45%;
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .modal.active .modal-content {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .hero-section {
+        height: 150px;
+    }
+
+    .hero-overlay {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .recipe-image {
+        height: 200px;
+    }
+
+    .recipe-meta,
+    .nutrition-info {
+        grid-template-columns: 1fr;
+    }
+
+    .category-content h3 {
+        font-size: var(--font-size-lg);
+    }
+
+    .category-content p {
+        font-size: var(--font-size-sm);
+    }
+
+    .search-section,
+    .categories-grid {
+        padding: 0 var(--spacing-md);
+        padding-bottom: var(--spacing-xl);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .category-recipes {
+        grid-template-columns: 1fr;
+        padding-bottom: calc(var(--spacing-xl) * 4);
+    }
+}
+
+@media (max-width: 480px) {
+    .search-results {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-header {
+        padding: var(--spacing-lg);
+    }
+
+    .modal-header h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .categories-grid {
+        padding-bottom: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-overlay {
+    width: 100%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 200px;
+  }
+}
+/* ----------------- 10. ДОСТУПНОСТЬ ----------------- */
+.recipe-card:focus-visible,
+.close-modal:focus-visible,
+.back-button:focus-visible,
+.category-card:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 2px;
+}
+
+/* Поддержка reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .category-card {
+        animation: none !important;
+        opacity: 1;
+    }
+    
+    .recipe-card:hover,
+    .category-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .category-content {
+        transition: background-color var(--transition-fast);
+    }
+
+    .recipe-details > * {
+        animation: none !important;
+    }
+}

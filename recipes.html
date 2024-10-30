@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemp Healthy Eating Calculator</title>
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/recipes.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="./images/logodark.png" class="logo logo-light" alt="Logo Light">
+                <img src="./images/logolight.png" class="logo logo-dark" alt="Logo Dark">
+                <h1 class="site-title">Hemp Healthy Eating Calculator</h1>
+            </div>
+            <button class="menu-icon">MENU</button>
+        </nav>
+    </header>
+    
+    <nav class="side-nav">
+        <button class="close-menu">×</button>
+        <ul>
+            <li><a href="index.html">Calculator</a></li>
+            <li><a href="recipes.html" class="active">Recipes</a></li>
+            <li><a href="library.html">Library</a></li>
+        </ul>
+        <div class="menu-footer">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Use</a>
+        </div>
+    </nav>
+    
+    <div class="overlay"></div>
+
+    <!-- Main Content -->
+    <main class="recipes-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <img src="./images/recipes.jpg" alt="Healthy Eating" class="hero-image">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1>Healthy Hemp Recipes</h1>
+                    <p>Discover delicious and nutritious meals enriched with hemp</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" id="recipe-search" class="search-input" placeholder="Search recipes...">
+            </div>
+            <div id="search-results" class="search-results hidden"></div>
+        </section>
+
+        <!-- Categories Grid -->
+        <div class="categories-grid"></div>
+
+    <!-- Модальное окно рецепта (слева) -->
+<div id="recipe-modal" class="modal recipe-modal">
+    <div class="modal-content">
+        <div class="recipe-content-wrapper">
+        <div class="recipe-image">
+            <img src="" alt="">
+            <button class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+        </div>
+        <div class="recipe-details">
+            <!-- Контент будет добавлен через JavaScript -->
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Модальное окно категории (справа) -->
+<div id="category-modal" class="modal category-modal">
+    <div class="modal-content">
+        <button class="close-modal">×</button>
+        <div class="category-recipes">
+            <!-- Контент будет добавлен через JavaScript -->
+        </div>
+    </div>
+</div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-divider"></div>
+        <div class="footer-content">
+            <!-- Support Block -->
+            <div class="support-block">
+                <h3>Support Hemp Research</h3>
+                <p>By supporting this project, you contribute to Ukrainian scientists' research in industrial hemp applications. Your support helps advance scientific knowledge and opens new possibilities for hemp utilization worldwide, promoting sustainable agriculture and health-conscious solutions.</p>
+                <!-- PayPal button -->
+                <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                    <input type="hidden" name="business" value="hempia.com@gmail.com" />
+                    <input type="hidden" name="currency_code" value="USD" />
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                </form>
+            </div>
+    
+            <!-- Contact Block -->
+            <div class="contact-block">
+                <h3>Contact Us</h3>
+                <!-- Замените HTML код формы на этот (используя сервис Formspree): -->
+                <form class="contact-form" action="https://formspree.io/f/mldegykv" method="POST">
+                    <div class="form-field">
+                        <input type="email" name="email" placeholder="Your email" required>
+                    </div>
+                    <div class="form-field">
+                        <textarea name="message" placeholder="Your message" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    
+        <div class="footer-copyright">
+            <p>© 2024 Hemp Healthy Eating Calculator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Loader and Error Message -->
+    <div class="loader" aria-hidden="true">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="error-message" aria-live="polite"></div>
+
+    <div id="recipe-modal" class="modal recipe-modal"></div>
+
+    <script type="module" src="./js/constants.js"></script>
+    <script type="module" src="./js/utils.js"></script>
+    <script type="module" src="./js/ui.js"></script>
+    <script type="module" src="./js/calculator.js"></script>
+    <script type="module" src="./js/recipes.js"></script>
+    <script type="module" src="./js/library.js"></script>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

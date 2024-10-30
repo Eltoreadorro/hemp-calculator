@@ -1,0 +1,504 @@
+/* Основные стили */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--mega-text-color);
+  line-height: var(--line-height-normal);
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Шапка сайта */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--background-color);
+  color: var(--mega-text-color);
+  z-index: 1500;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* Навигация в шапке */
+header nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: none;
+  position: relative; /* Изменено с static на relative */
+}
+
+/* Логотип и заголовок */
+.logo-container {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-right: auto; /* Прижимает контейнер влево */
+  margin-bottom: 15px;
+}
+
+/* Контейнер для логотипа */
+.logo-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+/* Общие стили для обоих логотипов */
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-top: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Светлый логотип (виден по умолчанию) */
+.logo-light {
+  opacity: 1;
+}
+
+.logo-dark {
+  opacity: 0;
+}
+
+/* При прокрутке меняем видимость логотипов */
+header.scrolled .logo-light {
+  opacity: 0;
+}
+
+header.scrolled .logo-dark {
+  opacity: 1;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  color: var(--mega-text-color);
+  margin: 0;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  margin-top: 13px;
+  margin-left: 500px;
+  white-space: nowrap;
+}
+
+header.scrolled .site-title {
+  color: var(--text-color);
+}
+
+/* Кнопка меню */
+.menu-icon {
+  right: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 2px solid var(--text-color);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2001;
+  overflow: hidden;
+  background: none;
+  margin-left: auto; /* Прижимает кнопку вправо */
+  margin-top: 13px;
+  position: absolute;
+}
+
+header:not(.scrolled) .menu-icon {
+  background-color: var(--calculator-color);
+  color: var(--text-color);
+  border-color: var(--calculator-color);
+}
+
+header.scrolled .menu-icon {
+  background-color: transparent;
+  color: var(--text-color);
+  border-color: var(--text-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--text-color);
+}
+
+.menu-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--calculator-color);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.menu-icon:hover::before {
+  left: 0;
+}
+
+.menu-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--text-color);
+}
+
+/* Медиа запросы */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 1rem;
+  }
+  
+  .menu-icon {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .logo-container {
+    gap: 10px;
+  }
+}
+
+/* Боковое навигационное меню */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--calculator-color) 0%, rgba(28, 73, 27, 0.95) 100%);
+  border-right: 1px solid rgba(190, 239, 158, 0.3);
+  transition: all 0.3s ease;
+  z-index: 2000;
+  transform: translateX(-100%);
+  padding-top: 60px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.side-nav.open {
+  left: 0;
+  transform: translateX(0);
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.side-nav ul li {
+  margin-bottom: 15px;
+}
+
+.side-nav ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.side-nav ul li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+}
+
+.side-nav ul li a:hover::before {
+  left: 100%;
+}
+
+.side-nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.side-nav ul li a.active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Кнопка закрытия в боковом меню */
+.close-menu {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-menu:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+/* Подвал бокового меню */
+.menu-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.menu-footer a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.menu-footer a:hover {
+  opacity: 1;
+}
+
+/* Оверлей */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1500;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Основной контент */
+main {
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 0;
+}
+
+/* Общие утилиты */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* Анимации */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    width: 100%;
+    left: -100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .logo-container {
+    width: 60%; /* Ограничиваем ширину на мобильных */
+    justify-content: center;
+  }
+}
+
+/* Медиа запросы */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 1rem;
+  }
+  
+  .menu-icon {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Основные стили футера */
+.site-footer {
+  margin-top: 40px;
+  background-color: var(--calculator-color);
+  color: var(--text-color);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 0;
+  position: relative;
+}
+
+/* Разделительная линия */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(to right, 
+      transparent,
+      rgba(190, 239, 158, 0.3),
+      transparent
+  );
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Контейнер для блоков */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Стили для блоков */
+.support-block,
+.contact-block {
+  flex: 1;
+  background: rgba(28, 73, 27, 0.4); /* Увеличена непрозрачность */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(190, 239, 158, 0.2);
+}
+
+/* Заголовки в блоках */
+.support-block h3,
+.contact-block h3 {
+  color: var(--text-color);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+/* Форма обратной связи */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.support-block form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(190, 239, 158, 0.2);
+    border-radius: 4px;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+  height: 100px;
+  resize: vertical;
+  max-height: 200px;
+}
+
+/* Кнопки */
+/* Кнопка отправки формы */
+.contact-form button {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  width: auto;
+  align-self: flex-start;
+}
+
+.contact-form button:hover {
+  background: var(--primary-color-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgb(173, 230, 157);
+  border-color: var(--text-color);
+}
+
+/* Копирайт */
+.footer-copyright {
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid rgba(190, 239, 158, 0.2);
+  font-size: 0.9rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .footer-content {
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+  }
+
+  .support-block,
+  .contact-block {
+      width: 100%;
+  }
+
+  .contact-form button {
+      width: 100%;
+  }
+}

@@ -1,0 +1,520 @@
+/* Специальные стили для страницы библиотеки */
+body:has([role="main"]) .menu-icon {
+  margin-right: -120px;
+  margin-bottom: 13px;
+}
+
+body:has([role="main"]) .logo {
+  margin-left: -120px;
+}
+
+/* или более специфично */
+body:has(.books-grid) .menu-icon {
+  margin-right: -120px;
+  margin-bottom: 13px;
+}
+
+body:has(.books-grid) .logo {
+  margin-left: -120px;
+}
+
+/* Базовые стили страницы */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+}
+
+/* Основной контейнер */
+main[role="main"] {
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Hero секция */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: var(--calculator-color);
+  margin-bottom: 0;
+  border-radius: 12px 12px 0 0 ;
+
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  text-align: center;
+  color: var(--text-color);
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Инфо секция */
+.info-section {
+  background: var(--calculator-color);
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0 0 12px 12px;
+  max-width: 1200px;
+}
+
+.info-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.info-card {
+  background: rgba(190, 239, 158, 0.1);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.info-card h3::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.info-card p {
+  color: var(--text-color);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.info-text {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Секция поиска */
+.search-section {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.search-container {
+  background: var(--calculator-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.search-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: rgba(190, 239, 158, 0.1);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+}
+
+.search-inner input {
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.search-inner input:focus {
+  outline: none;
+}
+
+.search-inner input::placeholder {
+  color: rgba(190, 239, 158, 0.5);
+}
+
+/* Сетка книг */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-card {
+  position: relative;
+  height: 400px;
+  background-color: var(--calculator-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.book-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.8)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-card:hover::before {
+  opacity: 1;
+}
+
+.book-card:hover img {
+  transform: scale(1.05);
+}
+
+.book-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  color: var(--text-color);
+  background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9), /* Более тёмный чёрный фон */
+        rgba(0, 0, 0, 0.7) /* Полупрозрачный чёрный */
+    );
+    transform: translateY(100%); /* Начально скрыт */
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.book-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color); /* Убедитесь, что текст белый */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Добавьте тень для лучшей читаемости */
+}
+
+.book-card:hover .book-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.book-overlay p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: var(--text-color);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Модальное окно */
+#book-modal {
+  visibility: hidden;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#book-modal.active {
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--calculator-color);
+  max-width: 800px;
+  width: 90%;
+  margin: 2rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  padding: 2rem;
+  color: var(--text-color);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  max-height: 90vh;
+    overflow-y: auto;
+    margin-bottom: 4rem; /* Увеличенный отступ снизу */
+}
+
+
+#book-modal.active .modal-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-modal:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-content > :first-child {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.modal-content > :first-child:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.book-details {
+  margin-top: 1rem;
+}
+
+.book-info h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+
+.book-meta {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+  color: var(--text-color);
+}
+
+.book-description {
+  margin: 1.5rem 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.amazon-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+}
+
+.amazon-button:hover {
+  box-shadow: 0 4px 15px rgb(173, 230, 157);
+  border-color: var(--text-color);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Медиа запросы */
+@media (max-width: 1024px) {
+  .info-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 250px;
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+
+  .info-container,
+  .search-section {
+    padding: 0 1rem;
+  }
+
+  .info-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .books-grid {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .book-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .info-section {
+    margin: 0.5rem 1rem 2rem;
+    border-radius: 8px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .info-card {
+    padding: 1.5rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .search-inner {
+    flex-direction: column;
+  }
+
+  .search-inner input {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .book-overlay h3 {
+    font-size: 1.2rem;
+  }
+
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+  
+    .search-inner input {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+}
+
+/* Доступность */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.book-card:focus-visible,
+.modal-content button:focus-visible,
+.search-inner input:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* Стили для скроллбара */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 198, 126, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(142, 198, 126, 0.5);
+}
