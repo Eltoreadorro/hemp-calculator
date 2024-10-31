@@ -1,3 +1,24 @@
+@media (max-width: 768px) {
+  .menu-icon {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    margin: 0 !important;
+    z-index: 2000 !important;
+  }
+
+  .logo-container {
+    position: fixed !important;
+    top: 5px !important;
+    left: 125px !important;
+    margin: 0 !important;
+  }
+  
+  .logo {
+    margin-bottom: 5px !important;
+  }
+}
+
 /* Специальные стили для страницы библиотеки */
 body:has([role="main"]) .menu-icon {
   margin-right: -120px;

@@ -29,6 +29,7 @@ header {
   z-index: 1500;
   transition: all 0.3s ease;
   width: 100%;
+  overflow: visible; /* Добавляем это свойство */
 }
 
 header.scrolled {
@@ -141,6 +142,7 @@ header.scrolled .menu-icon {
   border-color: var(--text-color);
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--text-color);
+  position: absolute; /* Меняем с fixed на absolute */
 }
 
 .menu-icon::before {
@@ -162,22 +164,6 @@ header.scrolled .menu-icon {
 .menu-icon:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--text-color);
-}
-
-/* Медиа запросы */
-@media (max-width: 768px) {
-  .site-title {
-    font-size: 1rem;
-  }
-  
-  .menu-icon {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-
-  .logo-container {
-    gap: 10px;
-  }
 }
 
 /* Боковое навигационное меню */
@@ -344,33 +330,6 @@ main {
   }
 }
 
-@media (max-width: 768px) {
-  .side-nav {
-    width: 100%;
-    left: -100%;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .logo-container {
-    width: 60%; /* Ограничиваем ширину на мобильных */
-    justify-content: center;
-  }
-}
-
-/* Медиа запросы */
-@media (max-width: 768px) {
-  .site-title {
-    font-size: 1rem;
-  }
-  
-  .menu-icon {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-}
-
 /* Основные стили футера */
 .site-footer {
   margin-top: 40px;
@@ -380,6 +339,8 @@ main {
   margin-left: calc(-50vw + 50%);
   margin-bottom: 0;
   position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* Разделительная линия */
@@ -402,6 +363,8 @@ main {
   display: flex;
   justify-content: space-between;
   gap: 40px;
+  margin-bottom: 0;
+  padding-bottom: 20px;
 }
 
 /* Стили для блоков */
@@ -483,22 +446,249 @@ main {
   padding: 15px;
   border-top: 1px solid rgba(190, 239, 158, 0.2);
   font-size: 0.9rem;
+  margin-bottom: 0;
+  padding-bottom: 15px;
 }
 
-/* Адаптивность */
+/* Медиа запросы для разных разрешений */
+/* Медиа запросы */
+
+/* Маленькие телефоны */
+@media (max-width: 320px) {
+  header {
+    padding: 0 5px;
+  }
+  .menu-icon {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    margin: 0;
+    z-index: 2000;
+  }
+
+  .logo-container {
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    margin: 0;
+  }
+
+  .logo-wrapper {
+    width: 25px;
+    height: 25px;
+  }
+
+  .logo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .site-title {
+    display: none;
+  }
+
+  .side-nav {
+    width: 100%;
+    left: -100%;
+    padding-top: 40px;
+  }
+
+  .side-nav ul {
+    padding: 10px;
+  }
+
+  .side-nav ul li a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .menu-footer {
+    padding: 0 10px;
+    bottom: 15px;
+  }
+}
+
+/* Средние телефоны */
+@media (min-width: 321px) and (max-width: 576px) {
+  header {
+    padding: 0 10px;
+  }
+
+  .menu-icon {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+    z-index: 2000;
+  }
+
+  .logo-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+  }
+
+  .logo-wrapper {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .site-title {
+    display: none;
+  }
+
+  .side-nav {
+    width: 100%;
+    left: -100%;
+  }
+
+  .menu-footer {
+    padding: 0 15px;
+    bottom: 20px;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 577px) and (max-width: 768px) {
+  header {
+    padding: 0 20px;
+  }
+
+  .menu-icon {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    margin: 0;
+    z-index: 2000;
+  }
+
+  .logo-container {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    margin: 0;
+  }
+
+  .site-title {
+    font-size: 1rem;
+    margin-left: 60px;
+  }
+
+  .side-nav {
+    width: 300px;
+  }
+}
+
+/* Небольшие ноутбуки */
+@media (min-width: 769px) and (max-width: 992px) {
+  .site-title {
+    margin-left: 80px;
+  }
+
+  .menu-icon {
+    margin-right: 20px;
+  }
+
+  .container {
+    padding: 0 30px;
+  }
+}
+
+/* Средние экраны */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+/* Общие стили для мобильных устройств */
 @media (max-width: 768px) {
+  .overlay.active {
+    backdrop-filter: blur(5px);
+  }
+
+  /* Футер */
   .footer-content {
-      flex-direction: column;
-      gap: 20px;
-      padding: 20px;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .site-footer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-bottom: 0;
+    background-color: var(--calculator-color);
+    overflow: hidden;
+  }
+
+  /* Специальные стили для главной страницы */
+  body:has(.hero) .logo-container {
+    position: fixed;
+    left: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .support-block,
   .contact-block {
-      width: 100%;
+    width: calc(100% - 40px);
   }
 
   .contact-form button {
-      width: 100%;
+    width: 100%;
+  }
+}
+
+/* Обновленные стили для кнопки меню */
+@media (max-width: 768px) {
+  .menu-icon {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    margin: 0 !important;
+    z-index: 2001 !important;
+    transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  header.scrolled .menu-icon {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    transform: none;
+    padding-right: 15px;
+  }
+
+  /* Сохраняем эффект наведения */
+  .menu-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px var(--text-color);
+  }
+
+  /* Анимация при прокрутке */
+  header.scrolled .menu-icon {
+    background-color: transparent;
+    color: var(--text-color);
+    border-color: var(--text-color);
+  }
+}
+
+/* Анимации для устройств с уменьшенным движением */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
