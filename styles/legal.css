@@ -85,49 +85,71 @@ main[role="main"] {
     padding-bottom: 40px;
 }
 
-/* Медиа запросы */
+/* Стили для правовых страниц */
 @media (max-width: 768px) {
+    body:has(.legal-content) .menu-icon {
+      position: fixed !important;
+      top: 10px !important;
+      right: 10px !important;
+      margin: 0 !important;
+      z-index: 2000 !important;
+    }
+  
+    .logo-container {
+      position: fixed !important;
+      top: 5px !important;
+      left: 125px !important;
+      margin: 0 !important;
+    }
+  
     .legal-content {
-        padding: 20px;
-        margin: 20px;
+      margin: 60px 0px;
+      padding: 20px;
+      width: calc(100% - 40px);
     }
-
+  
     .legal-document {
-        padding: 20px;
+      padding: 20px;
     }
-
+  
     .legal-document h1 {
-        font-size: 2rem;
+      font-size: 2rem;
     }
-
+  
     .legal-document h2 {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
     }
-
+  
     .legal-document h3 {
-        font-size: 1.2rem;
+      font-size: 1.2rem;
     }
-    
+      
     .legal-document ul {
-        margin-left: 10px;
+      margin-left: 10px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .legal-content {
-        margin: 10px;
-        padding: 15px;
+      margin: 60px 0px;
+      padding: 15px;
+      width: calc(100% - 20px);
     }
-
+  
     .legal-document {
-        padding: 15px;
+      padding: 15px;
     }
-
+  
     .legal-document h1 {
-        font-size: 1.8rem;
+      font-size: 1.8rem;
     }
-
+  
     .legal-document h2 {
-        font-size: 1.3rem;
+      font-size: 1.3rem;
     }
-}
+  
+    .legal-document p,
+    .legal-document ul li {
+      font-size: 0.9rem;
+    }
+  }

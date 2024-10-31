@@ -569,7 +569,7 @@
   }
 }
 
-/* Адаптивный дизайн */
+/* Медиа запросы */
 @media (max-width: 1024px) {
   .calculator-container {
     margin: 20px 40px;
@@ -616,10 +616,17 @@
   }
 
   /* Калькулятор */
+  .calculator-section {
+    width: 100%;
+    margin-left: 0;
+    padding: 30px 0;
+  }
+
   .calculator-container {
     flex-direction: column;
     margin: 20px;
     padding: 1rem;
+    width: calc(100% - 40px);
   }
 
   .calculator-form,
@@ -628,25 +635,70 @@
     padding: 15px;
   }
 
-  /* Форма */
-  .gender-buttons {
-    flex-direction: column;
-  }
-
-  .gender-button {
-    width: 100%;
-    min-height: 45px;
-  }
-
   .input-slider-group {
     flex-direction: column;
     align-items: stretch;
     gap: 5px;
   }
 
+    /* Форма калькулятора */
+  .calculator-form {
+    max-width: 100%;
+    padding: 15px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+  }
+  
+    /* Поля ввода и селекты */
+  .calculator-container input,
+  .calculator-container select {
+    width: calc(100% - 10px);
+    margin-bottom: 1rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+  }
+  
+    /* Группа ползунка и числового поля */
+  .input-slider-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: calc(100% - 10px);
+    margin: 0 5px;
+  }
+  
   .input-slider-group input[type="number"] {
     width: 100%;
     margin-bottom: 10px;
+  }
+  
+  .input-slider-group input[type="range"] {
+    width: 100%;
+    margin: 0;
+  }
+  
+    /* Кнопки выбора пола */
+  .gender-buttons {
+    flex-direction: column;
+    width: calc(100% - 10px);
+    margin: 0 5px 1rem;
+  }
+  
+  .gender-button {
+    width: 100%;
+    min-height: 45px;
+    margin: 5px 0;
+  }
+  
+  /* Form groups */
+  .form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .form-group label {
+    padding-left: 5px;
   }
 
   /* Benefits секция */
@@ -657,6 +709,39 @@
 
   .benefits-content {
     padding: 15px;
+  }
+
+  /* Секция рецептов */
+  .calculator-recipes {
+    margin: 0;
+    width: 100%;
+    padding: 2rem 0;
+  }
+
+  .calculator-recipes .view-all {
+    position: static;
+    display: block;
+    text-align: center;
+    margin: 0 auto 20px;
+    width: fit-content;
+  }
+
+  .calculator-recipes h2 {
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+
+  .calculator-recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 20px;
+    justify-items: center;
+  }
+
+  .calculator-recipe-grid .recipe-card {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -675,6 +760,7 @@
   /* Калькулятор */
   .calculator-container {
     margin: 10px;
+    width: calc(100% - 20px);
     padding: 10px;
   }
 
@@ -692,6 +778,18 @@
     min-height: 40px;
   }
 
+  .calculator-form {
+    padding: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .calculator-container input,
+  .calculator-container select,
+  .input-slider-group,
+  .gender-buttons {
+    width: calc(100% - 10px);
+  }
+
   /* Benefits секция */
   .benefits {
     padding: 15px;
@@ -704,6 +802,16 @@
 
   .benefits h2 {
     font-size: 1.5rem;
+  }
+
+  /* Рецепты */
+  .calculator-recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-recipes .view-all {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }
 
@@ -723,39 +831,9 @@
     margin: 5px;
     padding: 5px;
   }
-}
 
-/* Адаптивные стили */
-/* Медиа запросы */
-@media (max-width: 1200px) {
-  .calculator-recipe-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .calculator-recipe-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .calculator-recipe-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .calculator-recipe-grid .recipe-card {
-    height: 250px; /* Немного увеличиваем высоту на мобильных */
-  }
-}
-
-@media (max-width: 768px) {
-  .calculator-recipes {
-    margin: var(--spacing-xl) -20px; /* Уменьшаем отрицательный margin на мобильных */
-    width: calc(100% + 40px);
-  }
-  
-  .calculator-recipe-grid {
-    padding: var(--spacing-md);
+  .calculator-form {
+    padding: 5px;
+    width: calc(100% - 10px);
   }
 }

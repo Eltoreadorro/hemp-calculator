@@ -661,105 +661,55 @@ body:has(.recipes-page) .logo {
 }
 
 /* ----------------- 9. МЕДИА ЗАПРОСЫ ----------------- */
+@media (max-width: 768px) {
+  .menu-icon {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    margin: 0 !important;
+    z-index: 2000 !important;
+  }
+
+  .logo-container {
+    position: fixed !important;
+    top: 5px !important;
+    left: 125px !important;
+    margin: 0 !important;
+  }
+}
+
+/* Медиа запросы для основного контента */
 @media (max-width: 1200px) {
-    .modal-content {
-        width: 80%;
-    }
+  .modal-content {
+    width: 80%;
+  }
     
-    .search-results {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .search-results {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
-    .search-results,
-    .category-recipes {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .search-results,
+  .category-recipes {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .categories-grid {
-        gap: var(--spacing-md);
-    }
+  .categories-grid {
+    gap: var(--spacing-md);
+  }
 
-    .category-card:hover {
-        transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
-    }
+  .category-card:hover {
+    transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+  }
 }
 
 @media (max-width: 768px) {
-    .modal-content {
-        width: 90%;
-        top: 45%;
-        left: 50% !important;
-        right: auto !important;
-        transform: translate(-50%, -50%) !important;
-    }
-    
-    .modal.active .modal-content {
-        transform: translate(-50%, -50%) !important;
-    }
-
-    .hero-section {
-        height: 150px;
-    }
-
-    .hero-overlay {
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    .recipe-image {
-        height: 200px;
-    }
-
-    .recipe-meta,
-    .nutrition-info {
-        grid-template-columns: 1fr;
-    }
-
-    .category-content h3 {
-        font-size: var(--font-size-lg);
-    }
-
-    .category-content p {
-        font-size: var(--font-size-sm);
-    }
-
-    .search-section,
-    .categories-grid {
-        padding: 0 var(--spacing-md);
-        padding-bottom: var(--spacing-xl);
-        margin-bottom: var(--spacing-lg);
-    }
-
-    .category-recipes {
-        grid-template-columns: 1fr;
-        padding-bottom: calc(var(--spacing-xl) * 4);
-    }
-}
-
-@media (max-width: 480px) {
-    .search-results {
-        grid-template-columns: 1fr;
-    }
-    
-    .modal-header {
-        padding: var(--spacing-lg);
-    }
-
-    .modal-header h2 {
-        font-size: var(--font-size-xl);
-    }
-
-    .categories-grid {
-        padding-bottom: var(--spacing-lg);
-        margin-bottom: var(--spacing-md);
-    }
-}
-
-@media (max-width: 768px) {
+  /* Hero секция */
   .hero-section {
     height: 300px;
+    margin: 0 20px;
+    width: calc(100% - 40px);
   }
 
   .hero-overlay {
@@ -769,12 +719,167 @@ body:has(.recipes-page) .logo {
       rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0.4) 100%
     );
+    padding: 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 0;
+  }
+
+  /* Поиск */
+  .search-section {
+    margin: 20px auto;
+    padding: 0;
+    width: calc(100% - 80px); /* Уменьшаем ширину, увеличивая отступы */
+    max-width: none;
+    margin-left: 40px; /* Увеличиваем отступ слева */
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 0;
+    padding: var(--spacing-lg);
+    margin-left: -25px;
+  }
+
+  .search-results {
+    margin-left: -25px;
+  }
+
+  .search-container input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Модальные окна */
+  .modal-content {
+    width: 90%;
+    height: 90vh;
+    top: 50%;
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+    overflow-y: auto;
+  }
+    
+  .modal.active .modal-content {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .recipe-image {
+    height: 200px;
+  }
+
+  .recipe-meta,
+  .nutrition-info {
+    grid-template-columns: 1fr;
+  }
+
+  /* Категории */
+  .categories-grid {
+    margin: 20px;
+    padding: 0;
+    width: calc(100% - 40px);
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .category-content h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  .category-content p {
+    font-size: var(--font-size-sm);
+  }
+
+  .category-recipes {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
   }
 }
 
 @media (max-width: 480px) {
+  /* Hero секция */
   .hero-section {
     height: 200px;
+    margin: 0 10px;
+    width: calc(100% - 20px);
+  }
+
+  .hero-overlay {
+    padding: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  /* Поиск */
+  .search-section {
+    margin: 10px;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+  }
+
+  .search-container {
+    padding: var(--spacing-md);
+    margin-left: -20px;
+  }
+
+  .search-results {
+    grid-template-columns: 1fr;
+    margin-left: -28px;
+  }
+
+  /* Модальные окна */
+  .modal-header {
+    padding: var(--spacing-lg);
+  }
+
+  .modal-header h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  /* Категории */
+  .categories-grid {
+    margin: 10px;
+    width: calc(100% - 20px);
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    height: 200px;
+  }
+}
+
+/* Доступность */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .category-card {
+    animation: none !important;
+    opacity: 1;
+  }
+    
+  .recipe-card:hover,
+  .category-card:hover {
+    transform: translateY(-5px);
+  }
+    
+  .category-content {
+    transition: background-color var(--transition-fast);
+  }
+
+  .recipe-details > * {
+    animation: none !important;
   }
 }
 /* ----------------- 10. ДОСТУПНОСТЬ ----------------- */
@@ -787,31 +892,3 @@ body:has(.recipes-page) .logo {
 }
 
 /* Поддержка reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    .category-card {
-        animation: none !important;
-        opacity: 1;
-    }
-    
-    .recipe-card:hover,
-    .category-card:hover {
-        transform: translateY(-5px);
-    }
-    
-    .category-content {
-        transition: background-color var(--transition-fast);
-    }
-
-    .recipe-details > * {
-        animation: none !important;
-    }
-}
